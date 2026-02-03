@@ -5,6 +5,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/R0mb0/Italian_Manuscripts_Kraken_OCR_Report)
 [![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/R0mb0/Italian_Manuscripts_Kraken_OCR_Report)
 [![Donate](https://img.shields.io/badge/PayPal-Donate%20to%20Author-blue.svg)](http://paypal.me/R0mb0)
+[![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit)
 
 Improving the accessibility of the 1954 scanned edition about the Boscovich anemoscope of the Oliveriano Museum in Pesaro (OCR, text cleanup and enhancement).
 
