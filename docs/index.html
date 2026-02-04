@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>L’Anemoscopio Boscovich del Museo Oliveriano di Pesaro</title>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page-bg: Canvas;
+      --page-fg: CanvasText;
+      --accent-color: LinkText;
+      --muted-fg: GrayText;
+      --page-max-width: 900px;
+      --page-padding: 1.5rem;
+      --line-height: 1.6;
+      --base-font-size: 16px;
+    }
+
+    html {
+      font-size: var(--base-font-size);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--page-bg);
+      color: var(--page-fg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: var(--line-height);
+    }
+
+    .page-shell {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--page-padding);
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--page-fg) 12%, transparent);
+      padding-bottom: 0.75rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--muted-fg);
+      margin-bottom: 0.4rem;
+    }
+
+    .metadata {
+      font-size: 0.85rem;
+      color: var(--muted-fg);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    main {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0.3rem 0;
+      text-align: justify;
+    }
+
+    .page-break {
+      margin: 1.5rem 0 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed color-mix(in srgb, var(--page-fg) 15%, transparent);
+      font-size: 0.8rem;
+      color: var(--muted-fg);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .source-note {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+      background: color-mix(in srgb, var(--page-fg) 4%, transparent);
+      font-size: 0.85rem;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--accent-color);
+    }
+
+    mark {
+      background: color-mix(in srgb, var(--accent-color) 20%, transparent);
+      padding: 0 0.05em;
+    }
+
+    /*
+      Box di navigazione / aiuto lettura
+    */
+    .reading-tools {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+      background: color-mix(in srgb, var(--page-fg) 3%, transparent);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .reading-tools__section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      align-items: center;
+    }
+
+    .reading-tools button {
+      appearance: none;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--page-fg) 25%, transparent);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.7rem;
+      cursor: pointer;
+    }
+
+    .reading-tools button:hover,
+    .reading-tools button:focus-visible {
+      outline: none;
+      border-color: var(--accent-color);
+      background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding-inline: 1rem;
+      }
+
+      h1 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Piccolo script per aiutare la lettura (aumenta/diminuisce font)
+    (function () {
+      const step = 1;
+      const minSize = 14;
+      const maxSize = 20;
+
+      function getCurrentSize() {
+        const cs = getComputedStyle(document.documentElement).fontSize;
+        const n = parseFloat(cs);
+        return isNaN(n) ? 16 : n;
+      }
+
+      function setSize(size) {
+        const clamped = Math.max(minSize, Math.min(maxSize, size));
+        document.documentElement.style.fontSize = clamped + "px";
+      }
+
+      window._readingTools = {
+        increaseFont() {
+          setSize(getCurrentSize() + step);
+        },
+        decreaseFont() {
+          setSize(getCurrentSize() - step);
+        },
+        resetFont() {
+          document.documentElement.style.fontSize = "";
+        }
+      };
+    })();
+  </script>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <h1>L’Anemoscopio Boscovich del Museo Oliveriano di Pesaro</h1>
+      <div class="metadata" aria-label="Informazioni sul documento">
+      </div>
+
+      <div class="reading-tools" aria-label="Strumenti di lettura">
+        <div class="reading-tools__section">
+          <span>Dimensione testo:</span>
+          <button type="button" onclick="_readingTools.decreaseFont()" aria-label="Diminuisci dimensione carattere">A–</button>
+          <button type="button" onclick="_readingTools.resetFont()" aria-label="Ripristina dimensione carattere">A</button>
+          <button type="button" onclick="_readingTools.increaseFont()" aria-label="Aumenta dimensione carattere">A+</button>
+        </div>
+        <div class="reading-tools__section">
+        
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Pagina 1 -->
+      <section aria-label="Pagina 69">
+        <div class="page-break">Pagina 69</div>
+
+        <p><strong>L’Anemoscopio Boscovich del Museo Oliveriano di Pesaro</strong></p>
+
+        <p>
+          Durante i lavori di riordinamento ed inventario del Museo archeologico
+          Oliveriano, si è ritrovato l’anemoscopio c.d. <em>Buscovidi</em>, del quale mi
+          piace dare notizia, perché dopo la sua scoperta, nel 1759, se ne era
+          perduta ogni traccia.
+        </p>
+
+        <p>
+          Pubblicato ed illustrato da P. M. Paciaudi nei suoi
+          <em>Monumenta Peloponnesiaca</em>, Roma 1761, I, 115&nbsp;segg., venne poi
+          segnalato dal Peter in <em>Atti della Accad. Romana</em>, I, 2 (1823), 41&nbsp;segg.
+          e studiato ultimamente da A. Rehm in
+          <em>Griechische Windrose</em>, «Sitzungsberichte d. bay. Ak.» 1910, 3°, 80&nbsp;segg.
+        </p>
+
+        <p>
+          Ma l’articolo del Rehm, che pure è fondamentale per uno studio
+          approfondito del pezzo, è condotto sulla descrizione e sulla
+          riproduzione del monumento data dal Paciaudi, poiché ai suoi tempi esso
+          era considerato irrimediabilmente perduto. Constatandomi invece che
+          fino a qualche decennio fa l’anemoscopio era esposto in una sala del
+          museo, non sarà senza interesse, io credo, narrare brevemente la storia
+          del reperto, anche per togliere ogni dubbio sulla sua identificazione.
+        </p>
+
+        <p>
+          Ritrovato, come si è detto, nel 1759 a Roma, fuori Porta Capena,
+          lungo la via Appia, scavandosi il terreno per una piantagione di viti,
+          fu donato (o meglio venduto) da certo Francesco Alfano, antiquario, al
+          Paciaudi, che a sua volta lo donava all’Olivièri, con la lettera che si
+          dà in nota (1).
+        </p>
+
+        <p>
+          L’Olivieri, che annotava in margine alla riproduzione del pezzo nel
+          suo esemplare dei <em>Monumenta Peloponnesiaca</em>, I, 117:
+          <em>Singulare hoc monumentum prò ea, qua me complectitur
+          amicitia, dono mihi dedit cl. Paciaudius</em>, mostrò di apprezzare
+          moltissimo il dono, se ai suoi ringraziamenti così replicava il Paciaudi:
+        </p>
+
+        <p>
+          <em>
+            Adesso comincio ad incanirmi di quell’anemometro poiché a Voi piace
+            e adorna il Museo vostro; né il donatore, né il dono meritano sì
+            effusi ringraziamenti ed anzi debbo io esservi tenuto che abbiate sì
+            gentilmente accolto quel marmo, il quale se, prima di essere capitato tra
+            le mie mani, alle vostre fosse pervenuto, sarebbe stato più felicemente
+            illustrato (2).
+          </em>
+        </p>
+
+        <p>
+          Tuttavia, benché ne facesse tanto conto, l’erudito pesarese non parla
+          mai del nostro anemoscopio, né negli opuscoli che venne pubblicando sino
+          al 1786, né nelle postille all’opera sua maggiore, i
+          <em>Marmora Pisaurensia</em>, in cui annotò fino all’ultimo anno di vita non
+          solo i reperti del territorio di Pesaro, ma anche ogni altra antichità
+          che per doni o compere veniva ad arricchire il suo Museo.
+        </p>
+
+        <p>
+          Ma, dato il modo con cui ne era venuto in possesso, si può credere che
+          egli serbò il silenzio nel timore di nuocere all’amico, o piuttosto di
+          vedersi tolto il monumento dalla forza dell’autorità. Così del resto si
+          comportò anche per i doni che gli veniva facendo Paris Palletta,
+          soprintendente a quei tempi agli scavi di Urbisaglia.
+        </p>
+
+        <p>
+          Più strano è che il reperto non risulti nel minuzioso inventario
+          descrittivo dei marmi oliveriani compilato nel 1899. Ma il modo come
+          fino a poco tempo fa esso era conservato nel Museo, cioè disgiunto nei
+          suoi due pezzi, posti verticalmente su due diverse basi, e, più, l’averlo
+          ora rinvenuto abbandonato fra pietre di nessuna importanza in un
+          umidissimo sotterraneo, ove ha non poco sofferto, mi fa credere che i miei
+          predecessori, non messi sull’avviso da qualche nota dell’Olivieri e
+          soprattutto dalla citata lettera del Paciaudi, ignorandone la
+          provenienza e il significato, non ne apprezzarono giustamente
+          l’importanza e dubitarono forse della sua autenticità (1).
+        </p>
+
+        <p>
+          Resta a dire perché mai l’anemoscopio sia conosciuto col nome del
+          Boscovich e non con quello del Paciaudi. Così lo chiamò per primo il
+          Peter nell’articolo citato. E ingiustamente.
+        </p>
+      </section>
+
+      <!-- Pagina 70 -->
+      <section aria-label="Pagina 70">
+        <div class="page-break">Pagina 70</div>
+
+        <p>
+          Poiché il Boscovich non fece che inserire nel lungo articolo del
+          Paciaudi, nei cit. <em>Monumenta Peloponnesiaca</em>, I, 126‑131, una lettera,
+          in cui in parte ripete quanto dice l’editore, rifacendosi alle stesse
+          precise citazioni, e in parte fa una critica scientifica degli errori
+          compiuti dall’artefice nel costruire il planisfero che accompagna la
+          rosa dei venti; solo che, equivocando tra il significato di
+          <em>circulus septentrionalis</em> in Seneca e quello di
+          <em>(circulus) totus infra (supra) terram</em> dell’anemoscopio, si dà la pena
+          di misurarli in gradi e con molta serietà dice:
+          <em>
+            «Suo p(i) cubar initio marmar delineatum fuisse prò aliqua regione aliam
+            habentem altitudinem polarem, tum Romani transitum…»
+          </em>;
+          ma poiché, prendendo per esatta l’altezza del polo fissata dall’artefice,
+          si andrebbe fuori delle terre abitate da popoli storici,
+          <em>longe ultra omnem Graeciam et cultae antiquitatis regiones</em>, conclude
+          con l’affermare che l’autore dell’anemoscopio, Eutropio, … sbagliò!
+        </p>
+
+        <p>
+          Ma il Peter, fra il nome del Paciaudi, che nel suo lungo articolo non
+          manca tra l’altro di identificare il nostro Eutropio con lo storico, e
+          quello del Boscovich che s’immagina lo stesso Eutropio costruire
+          l’anemoscopio armato di astrolabio… per poi sbagliare di molti gradi,
+          ha preferito il secondo, tanto più famoso, specie nel campo
+          dell’astronomia.
+        </p>
+
+        <p>
+          Sia il Paciaudi che il Peter e ultimamente il Rehm mettono in
+          evidenza la singolarità del pezzo, unico nel suo genere. Infatti, per
+          non parlare della famosa torre degli otto venti di Atene, in
+          <em>I.G.</em> XIV&nbsp;906 e XIV&nbsp;1308 si hanno delle semplici basi dodecagone che
+          recano sulle facce i nomi greci dei venti e quelli corrispondenti latini;
+          in <em>C.I.L.</em> VIII, 4, 20652 una semplice iscrizione coi nomi dei venti
+          secondo i Romani (1); nella tavola di Aquileia una rosa di otto venti,
+          sempre secondo la nomenclatura latina (2); infine nel frammento di
+          Praga si hanno due soli nomi di venti in greco, e quelli dei
+          corrispondenti latini (3).
+        </p>
+
+        <p>
+          L’anemoscopio di Pesaro invece è un disco di marmo lunense, rotto in
+          due pezzi (che però combaciano perfettamente), il quale reca sulla
+          faccia superiore il planisfero e sulla fascia dello spessore i nomi
+          greci, traslitterati in latino, di dodici venti.
+        </p>
+
+        <p>
+          Il disco ha il diametro di cm&nbsp;55,5 circa, pari a 2½ palmi romani, cioè
+          a 22½ once e a 540 scrupoli; e lo spessore di cm&nbsp;6,8, pari a 2½ once,
+          cioè 15 sicilici (= cm&nbsp;6,82 circa) (4); ha nel mezzo un foro della forma
+          che si vede nel disegno annesso, e tutto in giro, sull’orlo della faccia
+          superiore, dodici piccoli fori che però non lo attraversano del tutto.
+        </p>
+
+        <p>
+          Nel mezzo evidentemente doveva essere infissa l’asta della banderuola
+          (5) e nei fori all’intorno delle punte di bronzo. Sempre sulla faccia
+          superiore sono poi tracciati sei diametri, i cui estremi terminano coi
+          piccoli fori che si è detto; quattro di essi raggiungono gli estremi di
+          quattro parallele (i tropici e i circoli polari) disposte rispettivamente
+          due sopra e due sotto a un diametro orizzontale (linea degli equinozi),
+          mentre il sesto diametro (meridiano celeste) è tracciato
+          perpendicolarmente a quest’ultimo.
+        </p>
+
+        <p>
+          Malgrado l’umidità l’abbia alquanto danneggiata, specie nell’emisfero
+          nord, sulla faccia superiore si può leggere agevolmente: sul circolo
+          polare antartico <em>TOTUS INFRA TERRA</em> (1); sulla linea solstiziale del
+          Capricorno: <em>BRUMALIS</em>; sulla linea degli equinozi:
+          <em>AEQUINOCTIALIS</em> (2); sul tropico del Cancro: <em>SOLSTITIALIS</em>; ed infine
+          sul circolo polare artico: <em>EUTROPIUS FECIT</em> e sotto di esso:
+          <em>TOTUS SUPRA TERRA</em>.
+        </p>
+
+        <p>
+          Sulla faccia dello spessore, sempre in capitale rustica, ma di tratto
+          più accurato, si legge:
+        </p>
+
+        <p>
+          <em>
+            NOTES PHOENIX EURUS APHELIOTES OAECIAS BOREAS APARCIAS
+            TRASCIASM IRGASTES ZEPHIRUS LIBS LIBONOTUS.
+          </em>
+        </p>
+
+        <p>
+          Ogni nome di vento è compreso fra due linee normali alle facce del
+          disco; ma la fascia dello spessore rimane divisa da queste linee in
+          dodici zone, i cui estremi non coincidono con gli estremi dei dodici
+          raggi; al contrario, questi vanno a finire giusto a metà di ciascuna
+          zona e della scritta che la contrassegna.
+        </p>
+
+        <p>
+          Tracce di ruggine sulla faccia inferiore lasciano supporre che lo
+          strumento poggiasse un tempo su di un supporto cilindrico di metallo.
+        </p>
+
+        <p>
+          Il planisfero dovette evidentemente essere tracciato prima, secondo
+          anche quanto dice Seneca in <em>Nat. Quaest.</em> 5, 17, per assegnare
+          scientificamente una zona dell’orizzonte, o meglio una delle dodici case
+          celesti ad ognuno dei dodici venti:
+          <em>
+            Qui duodecim rectos esse dixerunt hoc steterunt, totidem ventorum esse
+            quot coeli discrimina.
+          </em>
+        </p>
+
+        <p>
+          Ma, come si può dedurre dagli errori stessi in cui incorse, il nostro
+          Eutropio (o il lapicida) seguì a suo modo la dottrina del tempo.
+        </p>
+
+        <p>
+          Anzitutto tracciò sul suo disco la linea degli equinozi e, normalmente
+          ad essa, la proiezione del meridiano celeste, fissando così i quattro
+          punti cardinali; quindi divise bellamente il meridiano, lungo come si è
+          detto 540 scrupoli, in sei parti eguali di 90 scrupoli (= cm&nbsp;9,2) e
+          condusse per i punti di divisione le parallele alla linea degli
+          equinozi, allo scopo di ottenere, mantenendo costante la distanza dei
+          paralleli fondamentali, archi di cerchio eguali; il che gli venne fatto,
+          naturalmente, solo per i quattro staccati dai tropici; mentre, così
+          facendo, distando i circoli polari dai poli quanto dai cerchi dei
+          solstizi, assegnò alle calotte polari una zona troppo più vasta e alle
+          zone tropicali una troppo più piccola di quanto non siano.
+        </p>
+
+        <p>
+          Congiunse poi con quattro diametri gli estremi dei paralleli
+          fondamentali ottenendo così la divisione della circonferenza (cioè del
+          giro dell’orizzonte) in dodici archi e del cerchio in dodici settori.
+        </p>
+      </section>
+
+      <!-- Pagina 74 -->
+      <section aria-label="Pagina 74">
+        <div class="page-break">Pagina 74</div>
+
+        <p>
+          Nulla credo di dover dire circa le scritte <em>Brumalis (circulus)</em>,
+          <em>Aequinoctialis (circulus)</em> e <em>Solstitialis (circulus)</em>, che, come
+          ognuno sa, sono i nomi con cui gli antichi indicavano rispettivamente
+          la linea del solstizio d’inverno, degli equinozi e del solstizio
+          d’estate.
+        </p>
+
+        <p>
+          I due circoli polari, invece, recano, come si è detto:
+          <em>(circulus) totus supra (infra) terra</em> (1). L’espressione di Eutropio,
+          che richiama ciò che dice Gemino Rodio dei circoli polari (2), se è
+          diversa da quella usuale, è però esatta, perché ci dice appunto che la
+          calotta celeste artica è nel nostro emisfero sempre sopra l’orizzonte,
+          l’antartica sempre sotto di esso.
+        </p>
+
+        <p>
+          Salvo varianti grafiche dovute all’incertezza della traslitterazione
+          greco‑latina, i nomi dei venti sono quelli di cui in Plin.
+          <em>Nat. Hist.</em> 2, 119 e Sen. <em>Nat. Quaest.</em> 5, 16; mentre
+          <em>Apheliotes</em> per <em>Apeliotes</em> e <em>Aparcias</em> per <em>Aparotius</em> si hanno pure in
+          <em>I.G.</em> XIV&nbsp;1308 (3).
+        </p>
+
+        <p>
+          Quanto ad <em>Irgastes</em>, corrispondente all’<em>Argestes</em> dei testi, deriva
+          probabilmente dalla forma popolare <em>Ergentes</em>, testimoniata, oltre che
+          dai codici di Apul. <em>De Mundo</em> 11 e di Seneca <em>Nat. Quaest.</em> 5, 16, anche
+          dal frammento di Praga che reca appunto «ΕΡΓΑΣΤΗΣ» (4).
+        </p>
+
+        <p>
+          Come si vede dal verso delle scritte del planisfero, l’anemoscopio è
+          orientato a sud. Ora, se ai fondatissimi argomenti addotti dal Rehm per
+          provarne l’autenticità se ne volesse aggiungere un altro, questo
+          potrebbe essere tratto dall’orientamento particolare dell’anemoscopio,
+          giacché chi avesse voluto fare un falso avrebbe certamente usato quello
+          tradizionale, col Nord in alto e l’Est a destra dell’osservatore.
+        </p>
+
+        <p>
+          Anzi l’orientamento stesso induce a supporre che il monumento sia
+          stato trovato <em>in situ</em>. Chi infatti, uscendo da Roma per la Porta
+          Capena (via di Porta S. Sebastiano), si incammina sulla via Appia, si
+          lascia il Nord dietro le spalle ed ha il Sud avanti a sé; epperò,
+          dovendo fissare i punti cardinali, o meglio indicare i venti che da
+          quelli soffiano, porrà appunto <em>Notus</em> (Sud) in alto, <em>Aparctias</em> (Nord)
+          in basso, <em>Apheliotes</em> (Est) a sinistra, e infine <em>Zephyrus</em> (Ovest)
+          a destra.
+        </p>
+
+        <p style="margin-top: 1rem; text-align: right;">
+          <strong>Italo Zicari</strong>
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
