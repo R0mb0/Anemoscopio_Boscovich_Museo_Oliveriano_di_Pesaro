@@ -10,6 +10,8 @@
 
 Improving the accessibility of the 1954 scanned edition about the Boscovich anemoscope of the Oliveriano Museum in Pesaro (OCR, text cleanup and enhancement).
 
+- [Original document link](http://www.enti.provincia.pu.it/fileadmin/grpmnt/5618/StudiaOliveriana/1954/1954_ZicarI.pdf)
+
 ---
 
 <details>
